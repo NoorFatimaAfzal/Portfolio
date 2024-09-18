@@ -254,6 +254,15 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: #ffffff; /* Ensure text color is adjusted on hover */
 }
 
+@media screen and (max-width: 768px) {
+  .navbar-collapse {
+    /* Adjust styles for mobile here */
+    /* For example: */
+    overflow-y: scroll; /* Allow scrolling for long navbars */
+    flex-direction: column; /* Stack links vertically */
+  }
+}
+
 
 /************ Banner Css ************/
 .banner {

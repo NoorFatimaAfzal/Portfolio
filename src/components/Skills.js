@@ -94,14 +94,6 @@ export const Skills = () => {
                             <Carousel
                                 responsive={{
                                     ...responsive, // Inherit the existing responsive settings
-                                    mobile: {
-                                        ...responsive.mobile,
-                                        items: 1 // Set the number of items for mobile to 1
-                                    },
-                                    tablet: {
-                                        ...responsive.tablet,
-                                        items: 1 // Set the number of items for tablet to 1 as well if needed
-                                    },
                                     desktop: {
                                         ...responsive.desktop,
                                         items: 7 // Set the number of items for desktop
@@ -110,7 +102,7 @@ export const Skills = () => {
                                 infinite={true} // Enable infinite looping
                                 autoPlay={true} // Enable automatic sliding
                                 autoPlaySpeed={1000} // Set very fast speed to simulate continuous movement
-                                transitionDuration={1000} // Reduce the duration between transitions
+                                transitionDuration={3000} // Reduce the duration between transitions
                                 arrows={false} // Disable manual arrows for smooth movement
                                 removeArrowOnDeviceType={["tablet", "mobile"]} // Remove arrows on smaller devices
                                 customTransition="transform 1s linear" // Smooth transition for continuous effect

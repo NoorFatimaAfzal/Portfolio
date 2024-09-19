@@ -28,7 +28,7 @@ export const Contact = () => {
     setButtonText("Sending...");
   
     try {
-      let response = await fetch("/api/send-email", {
+      let response = await fetch("https://portfolio-bice-seven-52.vercel.app/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",

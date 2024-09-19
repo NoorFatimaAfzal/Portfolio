@@ -65,38 +65,39 @@ export const Banner = () => {
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5}>
-            <TrackVisibility>
-              {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <Row>
-                    <Col>
-                      <div className="info-box">
-                        <h3>Projects Completed</h3>
-                        <p>15+</p>
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className="info-box">
-                        <h3>Years of Experience</h3>
-                        <p>1+</p>
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className="info-box">
-                        <h3>Clients</h3>
-                        <p>0+</p>
-                      </div>
-                    </Col>
-                    <Col>
-                      <div className="info-box">
-                        <h3>Reviews</h3>
-                        <p>0+</p>
-                      </div>
-                    </Col>
-                  </Row>
-                </div>}
-            </TrackVisibility>
-          </Col>
+          <TrackVisibility>
+            {({ isVisible }) => (
+              <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
+                <Row className="justify-content-center align-items-stretch"> {/* Ensure columns stretch equally */}
+                  <Col xs={6} md={6} lg={6} xl={6}> {/* Adjust column sizes to match screen sizes */}
+                    <div className="info-box">
+                      <h3>Projects Completed</h3>
+                      <p>15+</p>
+                    </div>
+                  </Col>
+                  <Col xs={6} md={6} lg={6} xl={6}>
+                    <div className="info-box">
+                      <h3>Years of Experience</h3>
+                      <p>1+</p>
+                    </div>
+                  </Col>
+                  <Col xs={6} md={6} lg={6} xl={6}>
+                    <div className="info-box">
+                      <h3>Clients</h3>
+                      <p>0+</p>
+                    </div>
+                  </Col>
+                  <Col xs={6} md={6} lg={6} xl={6}>
+                    <div className="info-box">
+                      <h3>Reviews</h3>
+                      <p>0+</p>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            )}
+          </TrackVisibility>
+        </Col>
         </Row>
       </Container>
     </section>

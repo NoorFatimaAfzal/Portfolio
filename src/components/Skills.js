@@ -99,7 +99,13 @@ export const Skills = () => {
                                         items: 7 // Set the number of items for desktop
                                     }
                                 }}
-                                infinite={true}
+                                infinite={true} // Enable infinite looping
+                                autoPlay={true} // Enable automatic sliding
+                                autoPlaySpeed={1000} // Set very fast speed to simulate continuous movement
+                                transitionDuration={3000} // Reduce the duration between transitions
+                                arrows={false} // Disable manual arrows for smooth movement
+                                removeArrowOnDeviceType={["tablet", "mobile"]} // Remove arrows on smaller devices
+                                customTransition="transform 1s linear" // Smooth transition for continuous effect
                                 className="owl-carousel owl-theme skill-icon-slider"
                                 customLeftArrow={<CustomLeftArrow />}
                                 customRightArrow={<CustomRightArrow />}
@@ -153,6 +159,7 @@ export const Skills = () => {
                                     <img src={keras} alt="Keras" className="skill-icon" />
                                 </div>
                             </Carousel>
+
                         </div>
                     </div>
                 </div>

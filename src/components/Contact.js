@@ -5,54 +5,55 @@ import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
 export const Contact = () => {
-  const formInitialDetails = {
+  const [result, setResult] = useState("");
+  const [formDetails, setFormDetails] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
     message: ''
-  }
-  const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState('Send');
-  const [status, setStatus] = useState({});
+  });
+  const [buttonText, setButtonText] = useState("Send");
+  const [status, setStatus] = useState({ message: "", success: false });
 
-  const onFormUpdate = (category, value) => {
+  const onFormUpdate = (field, value) => {
     setFormDetails({
       ...formDetails,
-      [category]: value
+      [field]: value
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (event) => {
+    event.preventDefault();
     setButtonText("Sending...");
-  
-    try {
-      let response = await fetch("https://portfolio-bice-seven-52.vercel.app/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: JSON.stringify(formDetails),
-      });
-  
-      setButtonText("Send");
-      let result = await response.json();
-  
-      setFormDetails(formInitialDetails);
-  
-      if (result.code === 200) {
-        setStatus({ success: true, message: 'Message sent successfully' });
-      } else {
-        setStatus({ success: false, message: 'Something went wrong, please try again later.' });
-      }
-    } catch (error) {
-      setButtonText("Send");
-      setStatus({ success: false, message: 'Network error, please try again later.' });
-      console.error('Error:', error);
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "f7088cac-424b-448a-83b7-9da62d64df2d");
+    formData.append("firstName", formDetails.firstName);
+    formData.append("lastName", formDetails.lastName);
+    formData.append("email", formDetails.email);
+    formData.append("phone", formDetails.phone);
+    formData.append("message", formDetails.message);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      setStatus({ message: "Form Submitted Successfully", success: true });
+      event.target.reset();
+      setFormDetails({ firstName: '', lastName: '', email: '', phone: '', message: '' });
+    } else {
+      console.log("Error", data);
+      setStatus({ message: data.message, success: false });
     }
-  };  
-  
+    setButtonText("Send");
+  };
+
   return (
     <section className="contact" id="connect">
       <Container>
@@ -69,7 +70,7 @@ export const Contact = () => {
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                   <h2>Get In Touch</h2>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={onSubmit}>
                     <Row>
                       <Col size={12} sm={6} className="px-1">
                         <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
@@ -102,5 +103,5 @@ export const Contact = () => {
         </Row>
       </Container>
     </section>
-  )
+  );
 };
